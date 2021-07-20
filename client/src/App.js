@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import SearchBooks from './pages/SearchBooks';
-import SavedBooks from './pages/SavedBooks';
-import Navbar from './components/Navbar';
+import {SavedBooks, SearchBooks} from './Pages'
+import Navbar from './components'
 
 function App() {
   return (
