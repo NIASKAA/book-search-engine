@@ -4,11 +4,21 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import {SavedBooks, SearchBooks} from './Pages'
 import {Navbar} from './components'
 
+const client = new ApolloClient({
+  request: (operation) => {
+    const token = localStorage.getItem('id_token');
+
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    });
+  },
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
 function App() {
-  const client = new ApolloClient({
-    uri: '/graphql',
-    cache: new InMemoryCache(),
-  })
+
   return (
     <ApolloProvider client={client}>
       <Router>
